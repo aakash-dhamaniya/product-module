@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import { FaEdit, FaTrash } from "react-icons/fa";
+import "./pruduct.css";
 function ProductManager() {
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
@@ -125,7 +126,7 @@ function ProductManager() {
           onChange={handleChange}
           required
         />
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary submit">
           {editingId ? "Update" : "Add"} Product
         </button>
       </form>
@@ -145,44 +146,27 @@ function ProductManager() {
               <td>{product.name}</td>
               <td>{product.category}</td>
               <td>{product.price}</td>
-              <th>
+              <th className="th">
                 <button
                   onClick={() => handleEdit(product)}
-                  className="btn btn-primary"
+                  className="btn btn-primary action-button"
                 >
-                  Edit
+                  <FaEdit className="icon" />
+                  <span className="button-text">Edit</span>
                 </button>
                 &nbsp;
                 <button
                   onClick={() => handleDelete(product.id)}
-                  className="btn btn-danger"
+                  className="btn btn-danger action-button"
                 >
-                  Delete
+                  <FaTrash className="icon" />
+                  <span className="button-text">Delete</span>
                 </button>
               </th>
             </tr>
           ))}
         </tbody>
       </table>
-      {/* <ul style={{ marginTop: "20px" }}>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.name} - {product.category} - ${product.price}
-            <button
-              onClick={() => handleEdit(product)}
-              className="btn btn-primary"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => handleDelete(product.id)}
-              className="btn btn-danger"
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 }
